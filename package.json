@@ -1,0 +1,41 @@
+{
+  "name": "bodhi-pipes",
+  "version": "1.0.1",
+  "description": "pipes-n-filter implementation for processing javascript data structures",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bodhi-space/bodhi-pipes"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brian Gaffney <brian.gaffney@hotschedules.com>",
+  "license": "Apache2",
+  "dependencies": {
+    "async": "^0.9.0",
+    "deep-extend": "^0.3.3",
+    "shortid": "^2.2.2"
+  },
+  "devDependencies": {
+    "chai": "latest",
+    "grunt": "latest",
+    "grunt-bump": "latest",
+    "grunt-contrib-clean": "latest",
+    "grunt-contrib-copy": "^0.7.0",
+    "grunt-contrib-jshint": "latest",
+    "grunt-conventional-changelog": "^1.1.0",
+    "grunt-exec": "^0.4.6",
+    "grunt-jsonlint": "latest",
+    "grunt-mkdir": "^0.1.2",
+    "grunt-mocha-test": "latest",
+    "grunt-publish": "0.0.5",
+    "mocha": "latest",
+    "istanbul": "~0.3.5",
+    "grunt-mocha-istanbul": "~2.2.0",
+    "load-grunt-tasks": "~1.0.0",
+    "sinon": "~1.12.2",
+    "mock-fs": "~2.3.2",
+    "nock": "~0.56.0"
+  }
+}
