@@ -1,6 +1,6 @@
 {
   "name": "bodhi-pipes",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "pipes-n-filter implementation for processing javascript data structures",
   "main": "index.js",
   "repository": {
