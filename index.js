@@ -11,10 +11,16 @@ module.exports = function pipelines(defaults){
 
     var NAME = 'anonymous';
 
+    options.workers = options.workers || options.concurrent;
+
     //- Defaults
     defaults = extend({}, {
-        workers: 5
+        workers: 5,
+        mode   : 'safe'
     }, defaults);
+
+
+
 
     function isFunction(value){
         return typeof value == 'function' || false;
@@ -144,6 +150,9 @@ module.exports = function pipelines(defaults){
         options = options || {};
         options = extend(defaults, options);
 
+
+        var proceed = (options.mode === 'unsafe') ? process.nextTick : setImmediate;
+
         var queue = async.queue(function(message, callback){
             var flowCtx = new FlowContext(pipeline, message.headers);
             _process(message.message, flowCtx, function(err, result, flowCtx){
@@ -220,7 +229,7 @@ module.exports = function pipelines(defaults){
 
                 // take next filter from pending list, and continue execution
                 var filter = flowCtx.push(pending.shift());
-                process.nextTick(function() {
+                proceed(function _step(){
                     try{
                         filter.fn.call(extend(enhanceFilterContext(filter.context || {}), {
                             headers: flowCtx.envelope,
@@ -229,10 +238,10 @@ module.exports = function pipelines(defaults){
                     } catch (err) {
                         continueExecution(err);
                     }
-                });
+                })
             };
 
-            process.nextTick(function pipelineStep() {
+            proceed(function pipelineStep() {
                 continueExecution(null, message);
             });
         }
